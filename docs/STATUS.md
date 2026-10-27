@@ -12,7 +12,7 @@
 | Google Cloud (conta **licitacao@girohub.com.br**) | ⏳ **Próxima etapa:** README, seção 2 |
 | `npm run google:auth` e `npm run google:setup` | ⏳ Depois do Google Cloud |
 | Deploy na Vercel | ⏳ Falta conectar a Vercel ao Claude ou fazer pelo painel (README, seção 4) |
-| Tarefa agendada de alertas por e-mail | ⏳ Depois do setup: precisa do `SHEET_ID` e dos conectores Gmail/Sheets na conta licitacao@ (`docs/tarefa-alertas.md`) |
+| Alertas por e-mail | ✅ Script pronto (`docs/apps-script/Alertas.gs`), testado fora do Google · ⏳ instalar na planilha logo depois do `google:setup` ([guia](apps-script/COMO-INSTALAR.md)) |
 | Fase 2 (módulo de licitações, análise de edital etc.) | ⏳ Depois da Fase 1 no ar |
 
 Decisões já tomadas:
@@ -21,7 +21,7 @@ Decisões já tomadas:
 - **Dados:** planilha nova no Google Sheets, criada pelo `npm run google:setup` a partir da planilha v0.1.
 - **Arquivos:** Google Drive.
 - **Usuários:** ruan e olavio, os dois podem validar e excluir.
-- **Alertas:** 30, 15, 7, 1 e 0 dia, mais um resumo às segundas, por e-mail e no painel.
+- **Alertas:** 30, 15, 7, 1 e 0 dia, mais um resumo às segundas, por e-mail e no painel. O e-mail sai de um **script do Google dentro da planilha** (Apps Script), na conta licitacao@, de licitacao@ para licitacao@. Decisão de 27/10/2026: os conectores do Claude estão na conta da Castelo Branco e não podem enviar como licitacao@.
 - **Conformidade:** documentos Validados e no prazo ÷ (total − "Não se aplica").
 
 ## Retomar numa máquina nova (Windows)
@@ -58,6 +58,7 @@ Faça tudo logado como **licitacao@girohub.com.br**:
 5. Rode `npm run google:auth` e copie o `GOOGLE_REFRESH_TOKEN`.
 6. Rode `npm run google:setup` e copie o `SHEET_ID` e o `DRIVE_ROOT_ID`.
 7. Troque para `DATA_MODE=google`, rode `npm run dev` e teste anexar um arquivo, gerar um PDF e conferir se aparecem na planilha e no Drive.
+8. Instale os alertas por e-mail na planilha, seguindo `docs/apps-script/COMO-INSTALAR.md` (cerca de 5 minutos).
 
 ## Pontos de atenção
 

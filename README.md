@@ -17,7 +17,7 @@ Os dados ficam numa planilha Google da conta **licitacao@girohub.com.br**.
 | Dados | Planilha "Checklist Mestre – Licitações GiroHub (Sistema)" |
 | Arquivos | Drive, na pasta "GiroHub – Licitações" (Biblioteca 00–11 e Certames/CRMV-ES) |
 | Usuários | Ruan e Olávio, com usuário e senha |
-| E-mails de alerta | Tarefa agendada no Claude, enviada pelo Gmail de licitacao@girohub.com.br |
+| E-mails de alerta | Script do Google (Apps Script) dentro da planilha, enviado de licitacao@girohub.com.br |
 
 **Regra de conformidade:** documentos Validados e dentro do prazo ÷ (total − "Não se aplica"). "Modelo pronto" e "Em verificação" ainda não contam como conformes.
 
@@ -104,12 +104,9 @@ Depois que a Vercel estiver conectada ao Claude, eu faço o deploy. Para fazer m
 
 ## 5. Alertas por e-mail
 
-Os avisos vão para licitacao@girohub.com.br em **30, 15, 7 e 1 dia antes do vencimento e no dia**, com um resumo toda segunda-feira. Eles saem de uma tarefa agendada no Claude, que lê a planilha e envia pelo Gmail. Para eu ativar:
+Os avisos vão para licitacao@girohub.com.br em **30, 15, 7 e 1 dia antes do vencimento e no dia**, com um resumo toda segunda-feira. Quem envia é um **script do Google (Apps Script) dentro da própria planilha**, rodando na conta licitacao@. Ele não depende do sistema estar no ar nem dos conectores do Claude.
 
-- Os conectores **Gmail** e **Google Drive/Sheets** do Claude precisam estar conectados com licitacao@girohub.com.br.
-- Me passe o `SHEET_ID`.
-
-O texto da tarefa está em `docs/tarefa-alertas.md`. Cada e-mail enviado fica registrado na aba "Alertas_enviados", o que evita repetição.
+Instale logo depois do `npm run google:setup`, seguindo [`docs/apps-script/COMO-INSTALAR.md`](docs/apps-script/COMO-INSTALAR.md). Leva cerca de 5 minutos: colar o script, rodar `instalar` e depois `testarEnvio`. Cada aviso enviado fica registrado na aba "Alertas_enviados", o que evita repetição.
 
 ## Uso no dia a dia
 
@@ -132,6 +129,8 @@ lib/model.ts        regras: vencimento, alertas, conformidade
 lib/google/         planilha (Sheets) e Drive
 lib/demo/           modo demonstração
 lib/templates/      geradores dos 9 Word do piloto CRMV-ES (identidade GiroHub)
+docs/apps-script/   script de alertas por e-mail (instalar na planilha)
+docs/STATUS.md      onde o projeto está e o próximo passo
 data/seed.json      checklist inicial (gerado de data/origem_checklist_v0.1.json)
 scripts/            senha, google:auth, google:setup
 ```
