@@ -1,5 +1,7 @@
 # Licitações GiroHub · Sistema do checklist mestre (Fase 1)
 
+> **Retomando o trabalho?** Comece por [`docs/STATUS.md`](docs/STATUS.md): o que já foi feito, o próximo passo e como montar o projeto numa máquina nova.
+
 Sistema web para controlar os documentos de habilitação e proposta da GiroHub. Ele mostra:
 
 - conformidade geral, por grupo e por tipo;
